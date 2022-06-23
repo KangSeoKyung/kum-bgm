@@ -8,7 +8,7 @@
               <img
                 src="@/assets/img/maple.jpg"
                 alt="메이플로고"
-                style="width: 80px; margin-right : 20px"
+                style="width: 80px; margin-right: 20px"
               />
             </span>
             <span id="kum-hadder">KUM</span>
@@ -60,6 +60,30 @@
             </div>
           </div>
         </div>
+      </div>
+      <div id="audioPlay">
+        <audio :src="playingDest" controls="true"></audio>
+      </div>
+      <div id="scoreBoard">
+        <table id="scoreTable">
+          <tr>
+            <th style = "border: 3px solid white">1</th>
+            <th style = "border: 3px solid white">2</th>
+            <th style = "border: 3px solid white">3</th>
+            <th style = "border: 3px solid white">4</th>
+            <th style = "border: 3px solid white">5</th>
+          </tr>
+          <tr>
+            <td v-for="item in teamScore" :key="item.team">
+              <input
+                type="number"
+                step="10"
+                v-model="item.score"
+                style="width: 70%"
+              />
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
@@ -113,6 +137,29 @@ export default {
         { map: "커버곡", score: "50", BGM: "" },
       ],
       nowPlaying: "",
+      playingDest: "",
+      teamScore: [
+        {
+          team: "1",
+          score: 0,
+        },
+        {
+          team: "2",
+          score: 0,
+        },
+        {
+          team: "3",
+          score: 0,
+        },
+        {
+          team: "4",
+          score: 0,
+        },
+        {
+          team: "5",
+          score: 0,
+        },
+      ],
     };
   },
   methods: {
@@ -125,6 +172,7 @@ export default {
           if (this.nowPlaying === "") {
             const audio = new Audio(e.BGM);
             audio.play();
+            this.playingDest = e.BGM;
             this.nowPlaying = audio;
           } else {
             this.nowPlaying.pause();
@@ -162,5 +210,25 @@ export default {
 #middle_badge {
   width: 950px;
   height: 400px;
+}
+
+#audioPlay {
+  margin-top: 5%;
+}
+
+table{
+  text-align: center;
+  margin-top: 8%;
+}
+
+tr, td{
+  border-collapse: separate;
+  padding-top: 5%;
+  padding-bottom: 30%;
+}
+
+th{
+  background-color: dodgerblue;
+  color: azure;
 }
 </style>
