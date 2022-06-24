@@ -28,10 +28,7 @@
         <div id="upper_badge" class="d-flex justify-content-end"></div>
 
         <div id="middle_badge" class="d-flex flex-row justify-content-between">
-          <div
-            id="left_badge"
-            class="d-flex flex-column justify-content-around"
-          >
+          <div  id="left_badge" class="d-flex flex-column justify-content-around">
             <div v-for="i in categories" :key="i">
               <b-button style="width: 150px" size="lg" disabled>
                 {{ i }}
@@ -64,14 +61,14 @@
       <div id="audioPlay">
         <audio :src="playingDest" controls="true"></audio>
       </div>
-      <div id="scoreBoard">
+      <div id="scoreBoard" class="d-flex justify-content-center">
         <table id="scoreTable">
           <tr>
-            <th style = "border: 3px solid white">1</th>
-            <th style = "border: 3px solid white">2</th>
-            <th style = "border: 3px solid white">3</th>
-            <th style = "border: 3px solid white">4</th>
-            <th style = "border: 3px solid white">5</th>
+            <th style="border: 3px solid white; font-size : 1.5rem">1팀</th>
+            <th style="border: 3px solid white; font-size : 1.5rem">2팀</th>
+            <th style="border: 3px solid white; font-size : 1.5rem">3팀</th>
+            <th style="border: 3px solid white; font-size : 1.5rem">4팀</th>
+            <th style="border: 3px solid white; font-size : 1.5rem">5팀</th>
           </tr>
           <tr>
             <td v-for="item in teamScore" :key="item.team">
@@ -79,8 +76,9 @@
                 type="number"
                 step="10"
                 v-model="item.score"
-                style="width: 70%"
+                style="width: 60%; height : 2rem; text-align : center; font-size : 1.5rem"
               />
+              <span style="font-size : 150%; margin-left : 4%">점</span>
             </td>
           </tr>
         </table>
@@ -216,18 +214,20 @@ export default {
   margin-top: 5%;
 }
 
-table{
+table {
   text-align: center;
   margin-top: 8%;
+  width: 70%;
 }
 
-tr, td{
+tr,
+td {
   border-collapse: separate;
   padding-top: 5%;
   padding-bottom: 30%;
 }
 
-th{
+th {
   background-color: dodgerblue;
   color: azure;
 }
